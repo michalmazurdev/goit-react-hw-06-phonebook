@@ -2,19 +2,25 @@ import css from './ContactItem.module.css';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { removeContact } from 'redux/actions';
-// import PropTypes from 'prop-types';
 
 export const ContactItem = () => {
   const contacts = useSelector(state => state.contacts);
+  const filterPhrase = useSelector(state => state.filter.filter);
 
   const dispatch = useDispatch();
 
+  const filterContactsByName = contacts => {
+    return contacts.filter(contact =>
+      contact.name.toLowerCase().includes(filterPhrase.toLowerCase())
+    );
+  };
+  let filteredContacts = filterContactsByName(contacts);
+
   const handleDelete = contactId => {
-    // console.log(contactId);
     dispatch(removeContact(contactId));
   };
 
-  return contacts.map(contact => (
+  return filteredContacts.map(contact => (
     <li className={css.listItem} key={contact.id}>
       <span>
         {contact.name}: {contact.number}
@@ -25,8 +31,3 @@ export const ContactItem = () => {
     </li>
   ));
 };
-
-// ContactItem.propTypes = {
-//   arrayOfContacts: PropTypes.array,
-//   deleteFunction: PropTypes.func,
-// };

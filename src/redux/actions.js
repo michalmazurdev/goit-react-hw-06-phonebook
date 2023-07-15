@@ -1,8 +1,5 @@
 import { createAction } from '@reduxjs/toolkit';
 import { nanoid } from 'nanoid';
-// addContact
-// removeContact
-// setFilter
 
 export const addContact = createAction(
   'contacts/addContact',
@@ -31,6 +28,3 @@ export const setFilter = createAction('filter/setFilter', phrase => {
     payload: phrase,
   };
 });
-// console.log(addContact('revbrv', 'evkgrev'));
-// console.log(removeContact('eswferf'));
-// console.log(setFilter('dfvbdfb'));
