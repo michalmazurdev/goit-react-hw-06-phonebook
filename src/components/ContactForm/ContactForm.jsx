@@ -1,15 +1,20 @@
 import css from './ContactForm.module.css';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/actions';
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
+  const contacts = useSelector(state => state.contacts);
 
   const handleSubmit = event => {
     event.preventDefault();
     const form = event.target;
     const nameInputValue = event.target.elements.name.value;
     const numberInputValue = event.target.elements.number.value;
+    const contactNames = contacts.map(contact => contact.name);
+    if (contactNames.includes(nameInputValue)) {
+      return alert(`${nameInputValue} is alredy in contacts`);
+    }
     dispatch(addContact(nameInputValue, numberInputValue));
     form.reset();
   };
