@@ -1,5 +1,4 @@
 import css from './ContactForm.module.css';
-// import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { addContact } from 'redux/actions';
 
@@ -45,7 +44,3 @@ export const ContactForm = () => {
     </form>
   );
 };
-
-// ContactForm.propTypes = {
-//   onSubmit: PropTypes.func,
-// };
