@@ -6,6 +6,7 @@ import { removeContact } from 'redux/actions';
 
 export const ContactItem = () => {
   const contacts = useSelector(state => state.contacts);
+
   const dispatch = useDispatch();
 
   const handleDelete = contactId => {
